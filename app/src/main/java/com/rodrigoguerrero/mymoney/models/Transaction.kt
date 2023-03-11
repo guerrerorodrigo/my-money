@@ -1,9 +1,9 @@
-package com.rodrigoguerrero.mymoney.components
+package com.rodrigoguerrero.mymoney.models
 
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 
-data class Movement(
+data class Transaction(
     val name: String,
     val category: String,
     val amount: String,

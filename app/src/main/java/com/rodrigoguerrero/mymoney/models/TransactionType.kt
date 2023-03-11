@@ -1,5 +1,5 @@
 package com.rodrigoguerrero.mymoney.models
 
-enum class MovementType {
+enum class TransactionType {
     RECURRING_SPENDING, CUSTOM_SPENDING, INCOME, SAVINGS
 }

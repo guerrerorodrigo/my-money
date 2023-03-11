@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney
+package com.rodrigoguerrero.mymoney.screens
 
 import android.content.res.Configuration
 import androidx.compose.foundation.layout.Arrangement
@@ -19,14 +19,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.rodrigoguerrero.mymoney.components.Movement
-import com.rodrigoguerrero.mymoney.components.MovementItem
+import com.rodrigoguerrero.mymoney.R
+import com.rodrigoguerrero.mymoney.models.Transaction
+import com.rodrigoguerrero.mymoney.components.TransactionItem
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 
 @Composable
-fun MovementListScreen(
+fun TransactionListScreen(
     modifier: Modifier = Modifier,
-    movements: List<Movement>,
+    transactions: List<Transaction>,
     total: String
 ) {
     LazyColumn(
@@ -57,8 +58,8 @@ fun MovementListScreen(
             }
 
         }
-        items(movements) { movement ->
-            MovementItem(movement = movement)
+        items(transactions) { transaction ->
+            TransactionItem(transaction = transaction)
         }
     }
 }
@@ -66,19 +67,19 @@ fun MovementListScreen(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true, backgroundColor = 0xFF201A17)
 @Preview(showBackground = true, backgroundColor = 0xFFFFFBFF)
 @Composable
-private fun PreviewMovementListScreen() {
+private fun PreviewTransactionListScreen() {
     MyMoneyTheme {
-        val list = mutableListOf<Movement>()
+        val list = mutableListOf<Transaction>()
         for (i in 0..50) {
-            val movement = Movement(
+            val transaction = Transaction(
                 name = "Spotify $i",
                 category = "Streaming Services",
                 amount = "€14.99",
                 icon = Icons.Filled.MusicNote,
                 iconBackground = Color.Cyan
             )
-            list.add(movement)
+            list.add(transaction)
         }
-        MovementListScreen(movements = list, total = "€1,234.99")
+        TransactionListScreen(transactions = list, total = "€1,234.99")
     }
 }

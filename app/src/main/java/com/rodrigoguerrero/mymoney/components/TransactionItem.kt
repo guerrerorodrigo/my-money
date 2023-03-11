@@ -22,12 +22,13 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoguerrero.mymoney.R
+import com.rodrigoguerrero.mymoney.models.Transaction
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 
 @Composable
-fun MovementItem(
+fun TransactionItem(
     modifier: Modifier = Modifier,
-    movement: Movement
+    transaction: Transaction
 ) {
     Card(
         modifier = modifier,
@@ -45,10 +46,10 @@ fun MovementItem(
                 modifier = Modifier
                     .clip(CircleShape)
                     .size(dimensionResource(id = R.dimen.icon_container_size)),
-                color = movement.iconBackground
+                color = transaction.iconBackground
             ) {
                 Icon(
-                    imageVector = movement.icon,
+                    imageVector = transaction.icon,
                     contentDescription = null,
                     modifier = Modifier
                         .size(dimensionResource(id = R.dimen.icon_size))
@@ -62,19 +63,19 @@ fun MovementItem(
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = movement.name,
+                    text = transaction.name,
                     style = MyMoneyTheme.typography.labelMedium,
                     color = MyMoneyTheme.color.onSurface,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = movement.category,
+                    text = transaction.category,
                     style = MyMoneyTheme.typography.labelSmall,
                     color = MyMoneyTheme.color.onSurface
                 )
             }
             Text(
-                text = movement.amount,
+                text = transaction.amount,
                 style = MyMoneyTheme.typography.labelLarge,
                 color = MyMoneyTheme.color.onSurface,
                 fontWeight = FontWeight.Bold
@@ -86,9 +87,9 @@ fun MovementItem(
 @Preview(name = "Dark Mode", uiMode = Configuration.UI_MODE_NIGHT_YES, showBackground = true)
 @Preview(showBackground = true)
 @Composable
-private fun PreviewMovementItem() {
+private fun PreviewTransactionItem() {
     MyMoneyTheme {
-        val movement = Movement(
+        val transaction = Transaction(
             name = "Spotify",
             category = "Streaming Services",
             amount = "€14.99",
@@ -96,6 +97,6 @@ private fun PreviewMovementItem() {
             iconBackground = Color.Cyan
         )
 
-        MovementItem(movement = movement)
+        TransactionItem(transaction = transaction)
     }
 }

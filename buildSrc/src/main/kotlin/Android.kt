@@ -8,6 +8,7 @@ object Android {
         const val composeUi= "1.3.3"
         const val composeUiTooling = "1.3.3"
         const val composeUiTestManifest = "1.3.3"
+        const val composeUiTestJunit4 = "1.3.3"
         const val coreKtx = "1.9.0"
         const val dataStore = "1.0.0"
         const val hilt = "2.45"

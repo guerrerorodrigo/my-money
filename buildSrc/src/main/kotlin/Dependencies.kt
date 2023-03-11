@@ -23,7 +23,7 @@ object Dependencies {
 
     object Testing {
         const val androidJUnit = "androidx.test.ext:junit:${Versions.androidJUnit}"
-        const val composeJUnit = "androidx.compose.ui:ui-test-junit4:${Android.Versions.compose}"
+        const val composeJUnit = "androidx.compose.ui:ui-test-junit4:${Android.Versions.composeUiTestJunit4}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
         const val jUnit = "junit:junit:${Versions.jUnit}"
     }

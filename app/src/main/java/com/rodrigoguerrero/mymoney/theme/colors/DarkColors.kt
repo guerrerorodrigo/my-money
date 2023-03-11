@@ -1,0 +1,35 @@
+package com.rodrigoguerrero.mymoney.theme.colors
+
+import androidx.compose.material3.darkColorScheme
+
+val DarkColors = darkColorScheme(
+    primary = dark_primary,
+    onPrimary = dark_onPrimary,
+    primaryContainer = dark_primaryContainer,
+    onPrimaryContainer = dark_onPrimaryContainer,
+    secondary = dark_secondary,
+    onSecondary = dark_onSecondary,
+    secondaryContainer = dark_secondaryContainer,
+    onSecondaryContainer = dark_onSecondaryContainer,
+    tertiary = dark_tertiary,
+    onTertiary = dark_onTertiary,
+    tertiaryContainer = dark_tertiaryContainer,
+    onTertiaryContainer = dark_onTertiaryContainer,
+    error = dark_error,
+    errorContainer = dark_errorContainer,
+    onError = dark_onError,
+    onErrorContainer = dark_onErrorContainer,
+    background = dark_background,
+    onBackground = dark_onBackground,
+    surface = dark_surface,
+    onSurface = dark_onSurface,
+    surfaceVariant = dark_surfaceVariant,
+    onSurfaceVariant = dark_onSurfaceVariant,
+    outline = dark_outline,
+    inverseOnSurface = dark_inverseOnSurface,
+    inverseSurface = dark_inverseSurface,
+    inversePrimary = dark_inversePrimary,
+    surfaceTint = dark_surfaceTint,
+    outlineVariant = dark_outlineVariant,
+    scrim = dark_scrim,
+)

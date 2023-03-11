@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney.ui.theme
+package com.rodrigoguerrero.mymoney.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.runtime.staticCompositionLocalOf

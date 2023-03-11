@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney.ui.theme
+package com.rodrigoguerrero.mymoney.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

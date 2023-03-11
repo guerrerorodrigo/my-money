@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney.ui.theme
+package com.rodrigoguerrero.mymoney.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,11 +10,11 @@ import androidx.compose.material3.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import com.rodrigoguerrero.mymoney.ui.theme.colors.DarkColors
-import com.rodrigoguerrero.mymoney.ui.theme.colors.LightColors
-import com.rodrigoguerrero.mymoney.ui.theme.colors.LocalMyMoneyColors
+import com.rodrigoguerrero.mymoney.theme.colors.DarkColors
+import com.rodrigoguerrero.mymoney.theme.colors.LightColors
+import com.rodrigoguerrero.mymoney.theme.colors.LocalMyMoneyColors
 
-object MyNotesTheme {
+object MyMoneyTheme {
     val color: ColorScheme
         @Composable
         get() = LocalMyMoneyColors.current

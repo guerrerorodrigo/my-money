@@ -5,18 +5,13 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Card
-import androidx.compose.material.Icon
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,20 +37,10 @@ fun TransactionItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.m)
         ) {
-            Surface(
-                modifier = Modifier
-                    .clip(CircleShape)
-                    .size(dimensionResource(id = R.dimen.icon_container_size)),
-                color = transaction.iconBackground
-            ) {
-                Icon(
-                    imageVector = transaction.icon,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(dimensionResource(id = R.dimen.icon_size))
-                        .padding(all = MyMoneyTheme.padding.xs)
-                )
-            }
+            TransactionTypeIcon(
+                backgroundColor = transaction.iconBackground,
+                icon = transaction.icon
+            )
 
             Column(
                 verticalArrangement = Arrangement.Center,

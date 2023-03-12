@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney.components
+package com.rodrigoguerrero.mymoney.components.common
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween

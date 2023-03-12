@@ -19,9 +19,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoguerrero.mymoney.R
+import com.rodrigoguerrero.mymoney.components.common.ExpandableSection
+import com.rodrigoguerrero.mymoney.components.common.RotatingChevron
 import com.rodrigoguerrero.mymoney.models.Category
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 
@@ -44,13 +47,13 @@ fun CategoryItem(
                         onCategorySelected(category.id)
                     }
                 }
-                .padding(all = MyMoneyTheme.padding.m),
+                .padding(all = MyMoneyTheme.padding.ml),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.m)
         ) {
             TransactionTypeIcon(backgroundColor = category.iconBackground, icon = category.icon)
             Text(
-                text = category.name,
+                text = stringResource(id = category.name),
                 style = MyMoneyTheme.typography.labelMedium,
                 color = MyMoneyTheme.color.onSurface,
                 fontWeight = FontWeight.Bold,
@@ -58,7 +61,7 @@ fun CategoryItem(
             )
 
             if (hasSubcategories) {
-                RotatingChevron(shouldRotate = isExpanded, tint = MyMoneyTheme.color.onSurface)
+                RotatingChevron(shouldRotate = isExpanded, tint = MyMoneyTheme.color.outlineVariant)
             }
         }
 
@@ -66,7 +69,7 @@ fun CategoryItem(
             Column {
                 category.subcategories.forEach { subcategory ->
                     Text(
-                        text = subcategory.name,
+                        text = stringResource(id = subcategory.name),
                         style = MyMoneyTheme.typography.labelMedium,
                         color = MyMoneyTheme.color.onSurface,
                         fontWeight = FontWeight.Bold,
@@ -96,7 +99,7 @@ private fun PreviewCategoryItem() {
             id = 1,
             icon = Icons.Filled.SportsSoccer,
             iconBackground = Color.Cyan,
-            name = "Category Name",
+            name = R.string.category_entertainment,
             subcategories = emptyList()
         )
         CategoryItem(category = category, onCategorySelected = { })
@@ -112,14 +115,14 @@ private fun PreviewCategoryItemWithSubcategory() {
             id = 1,
             icon = Icons.Filled.SportsSoccer,
             iconBackground = Color.Cyan,
-            name = "Category Name",
+            name = R.string.category_entertainment,
             subcategories = emptyList()
         )
         CategoryItem(
             category = category.copy(
                 subcategories = listOf(
                     category,
-                    category.copy(name = "Another category"),
+                    category.copy(name = R.string.category_entertainment),
                     category,
                     category
                 )

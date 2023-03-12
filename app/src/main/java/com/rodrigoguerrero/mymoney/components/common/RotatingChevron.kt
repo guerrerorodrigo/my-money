@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.mymoney.components
+package com.rodrigoguerrero.mymoney.components.common
 
 import android.content.res.Configuration
 import androidx.compose.animation.core.animateFloatAsState

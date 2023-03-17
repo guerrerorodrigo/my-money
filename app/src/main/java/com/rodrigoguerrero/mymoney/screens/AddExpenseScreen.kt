@@ -54,7 +54,7 @@ fun AddExpenseScreen(
             Button(
                 onClick = onAddExpense,
                 shape = MyMoneyTheme.shapes.medium,
-                modifier = Modifier.padding(all = MyMoneyTheme.padding.l)
+                modifier = Modifier.padding(all = MyMoneyTheme.padding.m)
             ) {
                 Text(
                     text = stringResource(id = R.string.add_expense_button),

@@ -71,4 +71,16 @@
     <string name="category_other_political">Political</string>
     <string name="category_other_software">Software</string>
     <string name="category_other_payment">Payment request</string>
+
+    <!-- Add expense screen -->
+    <string name="add_expense_title">Add expense</string>
+    <string name="add_expense_button">Add expense to overview</string>
+    <string name="wallet">Wallet</string>
+    <string name="bank_account">Bank account</string>
+    <string name="description">Description</string>
+    <string name="amount_in_eur">Amount (in €)</string>
+    <string name="interval">Interval</string>
+    <string name="month">Month</string>
+    <string name="billing_day">Billing day</string>
+    <string name="default_billing_day">1</string>
 </resources>

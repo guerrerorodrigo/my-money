@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import com.rodrigoguerrero.mymoney.R
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 
@@ -22,12 +23,14 @@ import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 fun TransactionTypeIcon(
     modifier: Modifier = Modifier,
     backgroundColor: Color,
-    icon: ImageVector
+    icon: ImageVector,
+    iconTint: Color = Color.Black,
+    size: Dp = dimensionResource(id = R.dimen.icon_container_size)
 ) {
     Surface(
         modifier = modifier
             .clip(CircleShape)
-            .size(dimensionResource(id = R.dimen.icon_container_size)),
+            .size(size),
         color = backgroundColor
     ) {
         Icon(
@@ -35,7 +38,8 @@ fun TransactionTypeIcon(
             contentDescription = null,
             modifier = Modifier
                 .size(dimensionResource(id = R.dimen.icon_size))
-                .padding(all = MyMoneyTheme.padding.xs)
+                .padding(all = MyMoneyTheme.padding.s),
+            tint = iconTint
         )
     }
 }

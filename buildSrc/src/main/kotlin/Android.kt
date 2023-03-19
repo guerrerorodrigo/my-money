@@ -24,6 +24,8 @@ object Android {
     const val lifecycleRuntimeKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycleRuntimeKtx}"
 
     object Accompanist {
+        const val pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+        const val pagerIndicators = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
         const val systemUiController = "com.google.accompanist:accompanist-systemuicontroller:${Versions.accompanist}"
     }
 

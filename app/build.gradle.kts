@@ -66,6 +66,8 @@ dependencies {
     implementation(Android.Compose.icons)
 
     implementation(Android.Accompanist.systemUiController)
+    implementation(Android.Accompanist.pager)
+    implementation(Android.Accompanist.pagerIndicators)
 
     implementation(Android.Jetpack.dataStore)
 

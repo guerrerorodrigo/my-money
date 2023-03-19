@@ -72,6 +72,11 @@
     <string name="category_other_software">Software</string>
     <string name="category_other_payment">Payment request</string>
 
+    <!-- Transactions screen -->
+    <string name="recurring">Recurring</string>
+    <string name="spendings">Spendings</string>
+    <string name="income">Income</string>
+
     <!-- Add expense screen -->
     <string name="add_expense_title">Add expense</string>
     <string name="add_expense_button">Add expense to overview</string>

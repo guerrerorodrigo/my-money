@@ -45,6 +45,7 @@ object Android {
     object Hilt {
         const val android = "com.google.dagger:hilt-android:${Versions.hilt}"
         const val androidCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
+        const val compiler = "com.google.dagger:hilt-compiler:${Versions.hilt}"
         const val navigationCompose = "androidx.hilt:hilt-navigation-compose:${Versions.hiltNavigationCompose}"
     }
 
@@ -52,6 +53,12 @@ object Android {
         const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
         const val room = "androidx.room:room-runtime:${Versions.room}"
         const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+        const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
+    }
+
+    object Room {
+        const val room = "androidx.room:room-runtime:${Versions.room}"
+        const val roomKapt = "androidx.room:room-compiler:${Versions.room}"
         const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
     }
 }

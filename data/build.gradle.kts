@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    kotlin("kapt")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -36,6 +38,14 @@ android {
 dependencies {
 
     implementation(Android.coreKtx)
+
+    implementation(Android.Room.room)
+    implementation(Android.Room.roomKtx)
+    kapt(Android.Room.roomKapt)
+
+    implementation(Android.Hilt.android)
+    kapt(Android.Hilt.androidCompiler)
+    kapt(Android.Hilt.compiler)
 
     testImplementation(Dependencies.Testing.jUnit)
 

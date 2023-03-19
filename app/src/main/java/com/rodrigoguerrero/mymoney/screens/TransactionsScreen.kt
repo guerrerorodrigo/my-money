@@ -28,7 +28,8 @@ private enum class TransactionsTabs(@StringRes val textRes: Int) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TransactionsScreen(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onNavigateToAddTransaction: () -> Unit
 ) {
     val pagerState = rememberPagerState()
     val coroutineScope = rememberCoroutineScope()
@@ -58,16 +59,15 @@ fun TransactionsScreen(
             state = pagerState
         ) { index ->
             Column(
-                modifier = modifier
-                    .background(color = MyMoneyTheme.color.background)
-                    .fillMaxSize(),
+                modifier = modifier.fillMaxSize(),
                 verticalArrangement = Arrangement.Top
             ) {
                 when (index) {
                     TransactionsTabs.INCOME.ordinal -> {}
                     TransactionsTabs.RECURRING.ordinal -> TransactionListScreen(
                         transactions = listOf(),
-                        total = "0"
+                        total = "0",
+                        onAddTransaction = onNavigateToAddTransaction
                     )
                     TransactionsTabs.SPENDINGS.ordinal -> {}
                 }

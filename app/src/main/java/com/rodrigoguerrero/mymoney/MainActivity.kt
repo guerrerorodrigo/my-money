@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.rodrigoguerrero.mymoney.navigation.NavDestination.AddTransactionScreenDestination
 import com.rodrigoguerrero.mymoney.navigation.NavDestination.TransactionsScreenDestination
+import com.rodrigoguerrero.mymoney.screens.AddExpenseScreen
 import com.rodrigoguerrero.mymoney.screens.TransactionsScreen
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 
@@ -28,7 +30,19 @@ class MainActivity : ComponentActivity() {
                         startDestination = TransactionsScreenDestination.destination
                     ) {
                         composable(route = TransactionsScreenDestination.destination) {
-                            TransactionsScreen()
+                            TransactionsScreen(
+                                onNavigateToAddTransaction = {
+                                    navController.navigate(AddTransactionScreenDestination.destination)
+                                }
+                            )
+                        }
+                        composable(route = AddTransactionScreenDestination.destination) {
+                            AddExpenseScreen(
+                                onBack = { navController.popBackStack() },
+                                onClose = { navController.popBackStack() },
+                                onAddExpense = { /*TODO*/ },
+                                onBankAccountClicked = { }
+                            )
                         }
                     }
                 }

@@ -27,7 +27,9 @@ fun EditableSectionWithIcon(
     iconBackgroundColor: Color,
     backgroundColor: Color,
     textColor: Color,
-    cursorColor: Color
+    cursorColor: Color,
+    text: String,
+    onTextChanged: (String) -> Unit
 ) {
     Row(
         modifier = modifier
@@ -46,7 +48,9 @@ fun EditableSectionWithIcon(
             label = label,
             backgroundColor = backgroundColor,
             textColor = textColor,
-            cursorColor = cursorColor
+            cursorColor = cursorColor,
+            text = text,
+            onTextChanged = onTextChanged
         )
     }
 }
@@ -63,7 +67,9 @@ private fun PreviewEditableSectionWithIcon() {
             label = "Label",
             backgroundColor = Color.Gray,
             textColor = Color.Black,
-            cursorColor = Color.Black
+            cursorColor = Color.Black,
+            text = "",
+            onTextChanged = { }
         )
     }
 }

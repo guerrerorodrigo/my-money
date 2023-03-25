@@ -53,6 +53,8 @@ android {
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":domain")))
+
     implementation(Android.coreKtx)
     implementation(Android.lifecycleRuntimeKtx)
 

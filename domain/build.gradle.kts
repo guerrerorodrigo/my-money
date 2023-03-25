@@ -37,6 +37,8 @@ android {
 
 dependencies {
 
+    implementation(project(mapOf("path" to ":data")))
+
     implementation(Android.coreKtx)
 
     implementation(Android.Hilt.android)

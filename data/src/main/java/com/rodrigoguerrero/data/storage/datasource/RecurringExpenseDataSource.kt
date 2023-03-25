@@ -4,7 +4,7 @@ import com.rodrigoguerrero.data.storage.models.RecurringExpense
 import kotlinx.coroutines.flow.Flow
 
 interface RecurringExpenseDataSource {
-    val recurringExpenses: Flow<RecurringExpense>
+    val recurringExpenses: Flow<List<RecurringExpense>>
 
     suspend fun getRecurringExpense(id: String): RecurringExpense
 

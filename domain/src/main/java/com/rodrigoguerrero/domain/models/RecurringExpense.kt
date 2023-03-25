@@ -1,4 +1,4 @@
-package com.rodrigoguerrero.data.storage.models
+package com.rodrigoguerrero.domain.models
 
 data class RecurringExpense(
     val id: String,

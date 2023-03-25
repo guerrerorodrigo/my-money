@@ -82,6 +82,7 @@
     <string name="add_expense_button">Add expense to overview</string>
     <string name="wallet">Wallet</string>
     <string name="bank_account">Bank account</string>
+    <string name="category">Category</string>
     <string name="description">Description</string>
     <string name="amount_in_eur">Amount (in €)</string>
     <string name="interval">Interval</string>

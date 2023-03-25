@@ -14,7 +14,9 @@ import com.rodrigoguerrero.mymoney.navigation.NavDestination.TransactionsScreenD
 import com.rodrigoguerrero.mymoney.screens.AddExpenseScreen
 import com.rodrigoguerrero.mymoney.screens.TransactionsScreen
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +42,6 @@ class MainActivity : ComponentActivity() {
                             AddExpenseScreen(
                                 onBack = { navController.popBackStack() },
                                 onClose = { navController.popBackStack() },
-                                onAddExpense = { /*TODO*/ },
                                 onBankAccountClicked = { }
                             )
                         }

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.BasicTextField
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.LocalTextStyle
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
@@ -21,6 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoguerrero.mymoney.R
@@ -30,13 +32,15 @@ import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 @Composable
 fun EditableTextField(
     modifier: Modifier = Modifier,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    text: String,
     placeholder: String,
     label: String,
     backgroundColor: Color,
     textColor: Color,
-    cursorColor: Color
+    cursorColor: Color,
+    onTextChanged: (String) -> Unit
 ) {
-    var text by remember { mutableStateOf("") }
     val interactionSource = remember { MutableInteractionSource() }
 
     Column(
@@ -53,8 +57,9 @@ fun EditableTextField(
         BasicTextField(
             modifier = Modifier.fillMaxWidth(),
             value = text,
-            onValueChange = { text = it },
+            onValueChange = onTextChanged,
             interactionSource = interactionSource,
+            keyboardOptions = keyboardOptions,
             decorationBox = { innerTextField ->
                 TextFieldDefaults.TextFieldDecorationBox(
                     value = text,
@@ -64,7 +69,7 @@ fun EditableTextField(
                     visualTransformation = VisualTransformation.None,
                     interactionSource = interactionSource,
                     colors = TextFieldDefaults.textFieldColors(
-                        textColor = textColor,
+                        focusedTextColor = textColor,
                         focusedIndicatorColor = Color.Transparent,
                         unfocusedIndicatorColor = Color.Transparent,
                         containerColor = backgroundColor
@@ -102,7 +107,9 @@ private fun PreviewEditableTextField() {
             label = "Label",
             backgroundColor = Color.Gray,
             textColor = Color.Black,
-            cursorColor = Color.Black
+            cursorColor = Color.Black,
+            text = "",
+            onTextChanged = { }
         )
     }
 }

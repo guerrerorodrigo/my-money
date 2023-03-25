@@ -15,7 +15,7 @@ object Android {
         const val hiltNavigationCompose = "1.0.0"
         const val icons = "1.3.1"
         const val lifecycleRuntimeKtx = "2.5.1"
-        const val material3 = "1.0.1"
+        const val material3 = "1.1.0-beta01"
         const val material = "1.3.1"
         const val room = "2.4.3"
     }

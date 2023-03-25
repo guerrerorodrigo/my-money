@@ -13,10 +13,10 @@ internal class RecurringExpenseDataSourceImpl @Inject constructor(
     private val recurringExpenseDao: RecurringExpenseDao
 ) : RecurringExpenseDataSource {
 
-    override val recurringExpenses: Flow<RecurringExpense> =
+    override val recurringExpenses: Flow<List<RecurringExpense>> =
         recurringExpenseDao
             .getAllRecurringExpenses()
-            .map { it.toModel() }
+            .map { list -> list.map { it.toModel() } }
 
     override suspend fun getRecurringExpense(id: String): RecurringExpense {
         return recurringExpenseDao.getRecurringExpense(UUID.fromString(id)).toModel()
@@ -24,9 +24,11 @@ internal class RecurringExpenseDataSourceImpl @Inject constructor(
 
     override suspend fun addRecurringExpense(expense: RecurringExpense) {
         recurringExpenseDao.addRecurringExpense(expense.toEntity())
+        recurringExpenseDao.addCategory(expense.category.toEntity())
     }
 
     override suspend fun updateExpense(expense: RecurringExpense) {
+        recurringExpenseDao.addCategory(expense.category.toEntity())
         recurringExpenseDao.updateRecurringExpense(expense.toEntity())
     }
 

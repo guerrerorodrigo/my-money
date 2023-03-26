@@ -20,9 +20,7 @@ import androidx.compose.material.icons.outlined.Category
 import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.rememberModalBottomSheetState
-import androidx.compose.material3.Button
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -34,13 +32,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rodrigoguerrero.mymoney.R
 import com.rodrigoguerrero.mymoney.components.AddExpenseBottomBar
+import com.rodrigoguerrero.mymoney.components.AddExpensesBottomSheets
 import com.rodrigoguerrero.mymoney.components.common.ClickableSection
 import com.rodrigoguerrero.mymoney.components.common.ClickableSectionWithIcon
 import com.rodrigoguerrero.mymoney.components.common.EditableSectionWithIcon
@@ -79,23 +76,12 @@ fun AddExpenseScreen(
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
-            when(bottomSheetType) {
-                BottomSheetType.Categories -> CategoriesBottomSheet(
-                    onDismiss = {
-                        hideBottomSheet(coroutineScope, bottomSheetState)
-                    },
-                    onCategorySelected = { id ->
-                        viewModel.onCategorySelected(id)
-                        hideBottomSheet(coroutineScope, bottomSheetState)
-                    }
-                )
-                BottomSheetType.Intervals -> IntervalBottomSheet(
-                    onIntervalSelected = { interval ->
-                        viewModel.onIntervalSelected(interval)
-                        hideBottomSheet(coroutineScope, bottomSheetState)
-                    }
-                )
-            }
+            AddExpensesBottomSheets(
+                bottomSheetType = bottomSheetType,
+                hideBottomSheet = { hideBottomSheet(coroutineScope, bottomSheetState) },
+                onCategorySelected = viewModel::onCategorySelected,
+                onIntervalSelected = viewModel::onIntervalSelected
+            )
         },
         sheetShape = MyMoneyTheme.shapes.extraLarge,
         sheetBackgroundColor = MyMoneyTheme.color.surface

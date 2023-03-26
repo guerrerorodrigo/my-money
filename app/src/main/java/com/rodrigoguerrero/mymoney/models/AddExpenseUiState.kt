@@ -6,5 +6,5 @@ data class AddExpenseUiState(
     val isCategoryEmpty: Boolean = false,
     val isAmountEmpty: Boolean = false,
     val selectedCategory: Category? = null,
-    val showCategoriesScreen: Boolean = false
+    val selectedInterval: Interval = Interval.MONTHLY
 )

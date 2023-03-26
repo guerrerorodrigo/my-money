@@ -13,6 +13,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.ModalBottomSheetLayout
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Category
@@ -39,13 +40,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rodrigoguerrero.mymoney.R
+import com.rodrigoguerrero.mymoney.components.AddExpenseBottomBar
 import com.rodrigoguerrero.mymoney.components.common.ClickableSection
 import com.rodrigoguerrero.mymoney.components.common.ClickableSectionWithIcon
 import com.rodrigoguerrero.mymoney.components.common.EditableSectionWithIcon
 import com.rodrigoguerrero.mymoney.components.common.EditableTextField
 import com.rodrigoguerrero.mymoney.components.common.TopBarWithTitle
+import com.rodrigoguerrero.mymoney.models.BottomSheetType
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 import com.rodrigoguerrero.mymoney.viewmodels.AddExpenseViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -58,11 +62,10 @@ fun AddExpenseScreen(
     onBankAccountClicked: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+    var bottomSheetType: BottomSheetType by remember { mutableStateOf(BottomSheetType.Categories) }
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetState = rememberModalBottomSheetState(
-        initialValue = ModalBottomSheetValue.Hidden,
-        skipHalfExpanded = true,
-        confirmValueChange = { false }
+        initialValue = ModalBottomSheetValue.Hidden
     )
 
     var description by remember { mutableStateOf("") }
@@ -70,35 +73,32 @@ fun AddExpenseScreen(
     var billingDay by remember { mutableStateOf("") }
 
     BackHandler(bottomSheetState.isVisible) {
-        coroutineScope.launch {
-            viewModel.onCategoriesDismissed()
-            bottomSheetState.hide()
-        }
+        hideBottomSheet(coroutineScope, bottomSheetState)
     }
 
     ModalBottomSheetLayout(
         sheetState = bottomSheetState,
         sheetContent = {
-            when {
-                state.showCategoriesScreen -> CategoriesBottomSheet(
+            when(bottomSheetType) {
+                BottomSheetType.Categories -> CategoriesBottomSheet(
                     onDismiss = {
-                        coroutineScope.launch {
-                            viewModel.onCategoriesDismissed()
-                            bottomSheetState.hide()
-                        }
+                        hideBottomSheet(coroutineScope, bottomSheetState)
                     },
                     onCategorySelected = { id ->
-                        coroutineScope.launch {
-                            viewModel.onCategorySelected(id)
-                            viewModel.onCategoriesDismissed()
-                            bottomSheetState.hide()
-                        }
+                        viewModel.onCategorySelected(id)
+                        hideBottomSheet(coroutineScope, bottomSheetState)
+                    }
+                )
+                BottomSheetType.Intervals -> IntervalBottomSheet(
+                    onIntervalSelected = { interval ->
+                        viewModel.onIntervalSelected(interval)
+                        hideBottomSheet(coroutineScope, bottomSheetState)
                     }
                 )
             }
         },
-        sheetShape = MyMoneyTheme.shapes.medium,
-        sheetBackgroundColor = MyMoneyTheme.color.background
+        sheetShape = MyMoneyTheme.shapes.extraLarge,
+        sheetBackgroundColor = MyMoneyTheme.color.surface
     ) {
         Scaffold(
             modifier = modifier.fillMaxSize(),
@@ -110,23 +110,9 @@ fun AddExpenseScreen(
                 )
             },
             bottomBar = {
-                Button(
-                    onClick = {
-                        viewModel.onAddExpense(description, amount, billingDay)
-                    },
-                    shape = MyMoneyTheme.shapes.medium,
-                    modifier = Modifier.padding(all = MyMoneyTheme.padding.m)
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.add_expense_button),
-                        style = MyMoneyTheme.typography.titleMedium,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(vertical = MyMoneyTheme.padding.xs),
-                        textAlign = TextAlign.Center,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
+                AddExpenseBottomBar(
+                    onAddExpense = { viewModel.onAddExpense(description, amount, billingDay) }
+                )
             }
         ) { padding ->
             Column(
@@ -165,10 +151,8 @@ fun AddExpenseScreen(
                     text = stringResource(id = state.selectedCategory?.name ?: R.string.category),
                     label = stringResource(id = R.string.category),
                     onClicked = {
-                        coroutineScope.launch {
-                            viewModel.showCategoriesBottomSheet()
-                            bottomSheetState.show()
-                        }
+                        bottomSheetType = BottomSheetType.Categories
+                        showBottomSheet(coroutineScope, bottomSheetState)
                     }
                 )
 
@@ -191,11 +175,14 @@ fun AddExpenseScreen(
                     )
                     ClickableSection(
                         modifier = Modifier.weight(1f),
-                        text = stringResource(id = R.string.month),
+                        text = stringResource(id = state.selectedInterval.nameResource),
                         label = stringResource(
                             id = R.string.interval
                         ),
-                        onClicked = { }
+                        onClicked = {
+                            bottomSheetType = BottomSheetType.Intervals
+                            showBottomSheet(coroutineScope, bottomSheetState)
+                        }
                     )
                 }
                 EditableTextField(
@@ -210,6 +197,26 @@ fun AddExpenseScreen(
                 )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+private fun hideBottomSheet(
+    coroutineScope: CoroutineScope,
+    bottomSheetState: ModalBottomSheetState
+) {
+    coroutineScope.launch {
+        bottomSheetState.hide()
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+private fun showBottomSheet(
+    coroutineScope: CoroutineScope,
+    bottomSheetState: ModalBottomSheetState
+) {
+    coroutineScope.launch {
+        bottomSheetState.show()
     }
 }
 

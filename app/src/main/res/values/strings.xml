@@ -89,4 +89,14 @@
     <string name="month">Month</string>
     <string name="billing_day">Billing day</string>
     <string name="default_billing_day">1</string>
+
+    <!-- Intervals -->
+    <string name="week">Weekly</string>
+    <string name="biweekly">Biweekly</string>
+    <string name="four_weeks">Every 4 weeks</string>
+    <string name="bimonthly">Bimonthly</string>
+    <string name="quarter">Quarter</string>
+    <string name="semi_annually">Semi-annually</string>
+    <string name="year">Year</string>
+    <string name="biannually">Bi-annually</string>
 </resources>

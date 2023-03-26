@@ -3,6 +3,7 @@ package com.rodrigoguerrero.mymoney.viewmodels
 import androidx.lifecycle.ViewModel
 import com.rodrigoguerrero.mymoney.models.AddExpenseUiState
 import com.rodrigoguerrero.mymoney.models.Category
+import com.rodrigoguerrero.mymoney.models.Interval
 import com.rodrigoguerrero.mymoney.models.allCategories
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -30,11 +31,7 @@ class AddExpenseViewModel @Inject constructor(): ViewModel() {
         _state.update { it.copy(selectedCategory = selectedCategory.value) }
     }
 
-    fun onCategoriesDismissed() {
-        _state.update { it.copy(showCategoriesScreen = false) }
-    }
-
-    fun showCategoriesBottomSheet() {
-        _state.update { it.copy(showCategoriesScreen = true) }
+    fun onIntervalSelected(interval: Interval) {
+        _state.update { it.copy(selectedInterval = interval) }
     }
 }

@@ -12,18 +12,13 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
 @HiltViewModel
-class AddExpenseViewModel @Inject constructor(): ViewModel() {
+class AddExpenseViewModel @Inject constructor() : ViewModel() {
 
     private val selectedCategory = MutableStateFlow<Category?>(null)
     private val _state = MutableStateFlow(AddExpenseUiState())
     val state: StateFlow<AddExpenseUiState> = _state
 
-    fun onAddExpense(
-        description: String,
-        amount: String,
-        billingDay: String
-    ) {
-
+    fun onAddExpense() {
     }
 
     fun onCategorySelected(categoryId: Int) {
@@ -33,5 +28,17 @@ class AddExpenseViewModel @Inject constructor(): ViewModel() {
 
     fun onIntervalSelected(interval: Interval) {
         _state.update { it.copy(selectedInterval = interval) }
+    }
+
+    fun onDescriptionChanged(description: String) {
+        _state.update { it.copy(description = description)}
+    }
+
+    fun onAmountChanged(amount: String) {
+        _state.update { it.copy(amount = amount) }
+    }
+
+    fun onBillingDayChanged(billingDay: String) {
+        _state.update { it.copy(billingDay = billingDay) }
     }
 }

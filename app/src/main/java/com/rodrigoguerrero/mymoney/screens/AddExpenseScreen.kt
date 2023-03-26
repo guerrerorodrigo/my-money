@@ -65,10 +65,6 @@ fun AddExpenseScreen(
         initialValue = ModalBottomSheetValue.Hidden
     )
 
-    var description by remember { mutableStateOf("") }
-    var amount by remember { mutableStateOf("") }
-    var billingDay by remember { mutableStateOf("") }
-
     BackHandler(bottomSheetState.isVisible) {
         hideBottomSheet(coroutineScope, bottomSheetState)
     }
@@ -97,7 +93,8 @@ fun AddExpenseScreen(
             },
             bottomBar = {
                 AddExpenseBottomBar(
-                    onAddExpense = { viewModel.onAddExpense(description, amount, billingDay) }
+                    onAddExpense = viewModel::onAddExpense,
+                    isEnabled = state.isButtonEnabled
                 )
             }
         ) { padding ->
@@ -126,8 +123,8 @@ fun AddExpenseScreen(
                     backgroundColor = MyMoneyTheme.color.secondaryContainer,
                     textColor = MyMoneyTheme.color.onSecondaryContainer,
                     cursorColor = MyMoneyTheme.color.onSecondaryContainer,
-                    text = description,
-                    onTextChanged = { description = it }
+                    text = state.description.orEmpty(),
+                    onTextChanged = viewModel::onDescriptionChanged
                 )
 
                 ClickableSectionWithIcon(
@@ -156,8 +153,8 @@ fun AddExpenseScreen(
                         cursorColor = MyMoneyTheme.color.onSecondaryContainer,
                         modifier = Modifier.weight(1f),
                         keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number),
-                        text = amount,
-                        onTextChanged = { amount = it }
+                        text = state.amount.orEmpty(),
+                        onTextChanged = viewModel::onAmountChanged
                     )
                     ClickableSection(
                         modifier = Modifier.weight(1f),
@@ -178,8 +175,8 @@ fun AddExpenseScreen(
                     backgroundColor = MyMoneyTheme.color.inversePrimary,
                     textColor = MyMoneyTheme.color.onPrimaryContainer,
                     cursorColor = MyMoneyTheme.color.onPrimaryContainer,
-                    text = billingDay,
-                    onTextChanged = { billingDay = it }
+                    text = state.billingDay.orEmpty(),
+                    onTextChanged = viewModel::onBillingDayChanged
                 )
             }
         }

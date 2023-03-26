@@ -15,11 +15,13 @@ import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 @Composable
 fun AddExpenseBottomBar(
     modifier: Modifier = Modifier,
-    onAddExpense: () -> Unit
+    onAddExpense: () -> Unit,
+    isEnabled: Boolean
 ) {
     Button(
         onClick = onAddExpense,
         shape = MyMoneyTheme.shapes.medium,
+        enabled = isEnabled,
         modifier = modifier.padding(all = MyMoneyTheme.padding.m)
     ) {
         Text(

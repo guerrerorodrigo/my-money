@@ -22,72 +22,84 @@ val otherCategories = listOf(
         id = 54,
         icon = Icons.Outlined.LocalAtm,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_withdrawals
+        name = R.string.category_other_withdrawals,
+        parentCategoryId = 11
     ),
     Category(
         id = 55,
         icon = Icons.Outlined.Description,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_business
+        name = R.string.category_other_business,
+        parentCategoryId = 11
     ),
     Category(
         id = 56,
         icon = Icons.Outlined.ChildCare,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_kids
+        name = R.string.category_other_kids,
+        parentCategoryId = 11
     ),
     Category(
         id = 57,
         icon = Icons.Outlined.Pets,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_pets
+        name = R.string.category_other_pets,
+        parentCategoryId = 11
     ),
     Category(
         id = 58,
         icon = Icons.Outlined.ThumbUp,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_donations
+        name = R.string.category_other_donations,
+        parentCategoryId = 11
     ),
     Category(
         id = 59,
         icon = Icons.Outlined.School,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_education
+        name = R.string.category_other_education,
+        parentCategoryId = 11
     ),
     Category(
         id = 60,
         icon = Icons.Outlined.Help,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_uncategorized
+        name = R.string.category_other_uncategorized,
+        parentCategoryId = 11
     ),
     Category(
         id = 61,
         icon = Icons.Outlined.Circle,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_other
+        name = R.string.category_other_other,
+        parentCategoryId = 11
     ),
     Category(
         id = 62,
         icon = Icons.Outlined.CalendarToday,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_lottery
+        name = R.string.category_other_lottery,
+        parentCategoryId = 11
     ),
     Category(
         id = 63,
         icon = Icons.Outlined.Language,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_political
+        name = R.string.category_other_political,
+        parentCategoryId = 11
     ),
     Category(
         id = 64,
         icon = Icons.Outlined.Album,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_software
+        name = R.string.category_other_software,
+        parentCategoryId = 11
     ),
     Category(
         id = 65,
         icon = Icons.Outlined.Reply,
         iconBackground = Color(0xFF00BCD4),
-        name = R.string.category_other_payment
+        name = R.string.category_other_payment,
+        parentCategoryId = 11
     ),
 )

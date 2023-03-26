@@ -6,7 +6,8 @@ data class AddExpenseUiState(
     val selectedInterval: Interval = Interval.MONTHLY,
     val description: String? = null,
     val amount: String? = null,
-    val billingDay: String? = null
+    val billingDay: String? = null,
+    val exit: Boolean = false
 ) {
     val isButtonEnabled: Boolean get() {
         return !description.isNullOrEmpty() && !amount.isNullOrEmpty()

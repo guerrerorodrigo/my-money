@@ -13,18 +13,21 @@ val houseCategories = listOf(
         id = 12,
         icon = Icons.Outlined.Spa,
         iconBackground = Color(0xFF673AB7),
-        name = R.string.category_house_garden
+        name = R.string.category_house_garden,
+        parentCategoryId = 4
     ),
     Category(
         id = 13,
         icon = Icons.Outlined.Bed,
         iconBackground = Color(0xFF673AB7),
-        name = R.string.category_house_furniture
+        name = R.string.category_house_furniture,
+        parentCategoryId = 4
     ),
     Category(
         id = 14,
         icon = Icons.Outlined.HomeRepairService,
         iconBackground = Color(0xFF673AB7),
-        name = R.string.category_house_repairs
+        name = R.string.category_house_repairs,
+        parentCategoryId = 4
     ),
 )

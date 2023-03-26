@@ -41,8 +41,7 @@ class MainActivity : ComponentActivity() {
                         composable(route = AddTransactionScreenDestination.destination) {
                             AddExpenseScreen(
                                 onBack = { navController.popBackStack() },
-                                onClose = { navController.popBackStack() },
-                                onBankAccountClicked = { }
+                                onClose = { navController.popBackStack() }
                             )
                         }
                     }

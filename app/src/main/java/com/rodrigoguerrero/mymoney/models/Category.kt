@@ -1,8 +1,10 @@
 package com.rodrigoguerrero.mymoney.models
 
+import android.content.res.Resources
 import androidx.annotation.StringRes
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.rodrigoguerrero.domain.models.Category as CategoryDomain
 import com.rodrigoguerrero.mymoney.models.categories.entertainmentCategories
 import com.rodrigoguerrero.mymoney.models.categories.expensesCategories
 import com.rodrigoguerrero.mymoney.models.categories.foodCategories
@@ -19,8 +21,15 @@ data class Category(
     val iconBackground: Color,
     @StringRes
     val name: Int,
+    val parentCategoryId: Int? = null,
     val subcategories: List<Category> = emptyList()
 )
 
 val allCategories =
     entertainmentCategories + expensesCategories + foodCategories + houseCategories + livingCategories + otherCategories + shoppingCategories + transportCategories + wellnessCategories
+
+fun Category.toDomainModel(resources: Resources) = CategoryDomain(
+    id = id,
+    name = resources.getString(name),
+    parentCategoryId = parentCategoryId
+)

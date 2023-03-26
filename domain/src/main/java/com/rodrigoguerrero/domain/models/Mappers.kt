@@ -15,13 +15,13 @@ fun RecurringExpenseData.toDomainModel() = RecurringExpense(
 fun CategoryData.toDomainModel() = Category(
     id = id,
     name = name,
-    parentCategory = parentCategory
+    parentCategoryId = parentCategoryId
 )
 
 fun Category.toDataModel() = CategoryData(
     id = id,
     name = name,
-    parentCategory = parentCategory
+    parentCategoryId = parentCategoryId
 )
 
 fun RecurringExpense.toDataModel() = RecurringExpenseData(

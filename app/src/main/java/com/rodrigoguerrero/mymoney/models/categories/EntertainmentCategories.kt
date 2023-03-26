@@ -17,36 +17,42 @@ val entertainmentCategories = listOf(
         id = 27,
         icon = Icons.Outlined.WbSunny,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_holidays
+        name = R.string.category_entertainment_holidays,
+        parentCategoryId = 6
     ),
     Category(
         id = 28,
         icon = Icons.Outlined.PlayArrow,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_hobbies
+        name = R.string.category_entertainment_hobbies,
+        parentCategoryId = 6
     ),
     Category(
         id = 29,
         icon = Icons.Outlined.SportsSoccer,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_sports
+        name = R.string.category_entertainment_sports,
+        parentCategoryId = 6
     ),
     Category(
         id = 30,
         icon = Icons.Outlined.LocationOn,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_events
+        name = R.string.category_entertainment_events,
+        parentCategoryId = 6
     ),
     Category(
         id = 31,
         icon = Icons.Outlined.Circle,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_other
+        name = R.string.category_entertainment_other,
+        parentCategoryId = 6
     ),
     Category(
         id = 32,
         icon = Icons.Outlined.MusicNote,
         iconBackground = Color(0xFF2196F3),
-        name = R.string.category_entertainment_streaming
+        name = R.string.category_entertainment_streaming,
+        parentCategoryId = 6
     ),
 )

@@ -22,72 +22,84 @@ val livingCategories = listOf(
         id = 15,
         icon = Icons.Outlined.Call,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_internet
+        name = R.string.category_living_internet,
+        parentCategoryId = 5
     ),
     Category(
         id = 16,
         icon = Icons.Outlined.Settings,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_services
+        name = R.string.category_living_services,
+        parentCategoryId = 5
     ),
     Category(
         id = 17,
         icon = Icons.Outlined.Equalizer,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_utilities
+        name = R.string.category_living_utilities,
+        parentCategoryId = 5
     ),
     Category(
         id = 18,
         icon = Icons.Outlined.Key,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_mortgage
+        name = R.string.category_living_mortgage,
+        parentCategoryId = 5
     ),
     Category(
         id = 19,
         icon = Icons.Outlined.Drafts,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_rent
+        name = R.string.category_living_rent,
+        parentCategoryId = 5
     ),
     Category(
         id = 20,
         icon = Icons.Outlined.CreditCard,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_surcharges
+        name = R.string.category_living_surcharges,
+        parentCategoryId = 5
     ),
     Category(
         id = 21,
         icon = Icons.Outlined.Circle,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_other
+        name = R.string.category_living_other,
+        parentCategoryId = 5
     ),
     Category(
         id = 22,
         icon = Icons.Outlined.Podcasts,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_broadcaster
+        name = R.string.category_living_broadcaster,
+        parentCategoryId = 5
     ),
     Category(
         id = 23,
         icon = Icons.Outlined.Bolt,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_energy
+        name = R.string.category_living_energy,
+        parentCategoryId = 5
     ),
     Category(
         id = 24,
         icon = Icons.Outlined.PhoneAndroid,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_mobile
+        name = R.string.category_living_mobile,
+        parentCategoryId = 5
     ),
     Category(
         id = 25,
         icon = Icons.Outlined.AccountBalance,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_bank
+        name = R.string.category_living_bank,
+        parentCategoryId = 5
     ),
     Category(
         id = 26,
         icon = Icons.Outlined.AssuredWorkload,
         iconBackground = Color(0xFF3F51B5),
-        name = R.string.category_living_insurance
+        name = R.string.category_living_insurance,
+        parentCategoryId = 5
     ),
 )

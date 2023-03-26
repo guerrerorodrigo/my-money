@@ -29,8 +29,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
@@ -49,16 +52,17 @@ import com.rodrigoguerrero.mymoney.viewmodels.AddExpenseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterialApi::class, ExperimentalComposeUiApi::class)
 @Composable
 fun AddExpenseScreen(
     modifier: Modifier = Modifier,
     viewModel: AddExpenseViewModel = hiltViewModel(),
     onBack: () -> Unit,
     onClose: () -> Unit,
-    onBankAccountClicked: () -> Unit
 ) {
     val state by viewModel.state.collectAsState()
+    val keyboardController = LocalSoftwareKeyboardController.current
+    val context = LocalContext.current
     var bottomSheetType: BottomSheetType by remember { mutableStateOf(BottomSheetType.Categories) }
     val coroutineScope = rememberCoroutineScope()
     val bottomSheetState = rememberModalBottomSheetState(
@@ -67,6 +71,10 @@ fun AddExpenseScreen(
 
     BackHandler(bottomSheetState.isVisible) {
         hideBottomSheet(coroutineScope, bottomSheetState)
+    }
+
+    if (state.exit) {
+        onBack()
     }
 
     ModalBottomSheetLayout(
@@ -93,7 +101,7 @@ fun AddExpenseScreen(
             },
             bottomBar = {
                 AddExpenseBottomBar(
-                    onAddExpense = viewModel::onAddExpense,
+                    onAddExpense = { viewModel.onAddExpense(context.resources) },
                     isEnabled = state.isButtonEnabled
                 )
             }
@@ -112,7 +120,7 @@ fun AddExpenseScreen(
                     iconBackgroundColor = Color(0xFF9C27B0),
                     text = stringResource(id = R.string.wallet),
                     label = stringResource(id = R.string.bank_account),
-                    onClicked = onBankAccountClicked
+                    onClicked = {}
                 )
 
                 EditableSectionWithIcon(
@@ -135,6 +143,7 @@ fun AddExpenseScreen(
                     label = stringResource(id = R.string.category),
                     onClicked = {
                         bottomSheetType = BottomSheetType.Categories
+                        keyboardController?.hide()
                         showBottomSheet(coroutineScope, bottomSheetState)
                     }
                 )
@@ -164,6 +173,7 @@ fun AddExpenseScreen(
                         ),
                         onClicked = {
                             bottomSheetType = BottomSheetType.Intervals
+                            keyboardController?.hide()
                             showBottomSheet(coroutineScope, bottomSheetState)
                         }
                     )
@@ -176,7 +186,8 @@ fun AddExpenseScreen(
                     textColor = MyMoneyTheme.color.onPrimaryContainer,
                     cursorColor = MyMoneyTheme.color.onPrimaryContainer,
                     text = state.billingDay.orEmpty(),
-                    onTextChanged = viewModel::onBillingDayChanged
+                    onTextChanged = viewModel::onBillingDayChanged,
+                    keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number)
                 )
             }
         }
@@ -211,7 +222,6 @@ private fun PreviewAddExpenseScreen() {
         AddExpenseScreen(
             onBack = { },
             onClose = { },
-            onBankAccountClicked = { }
         )
     }
 }

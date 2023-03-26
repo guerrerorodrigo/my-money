@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 internal data class CategoryEntity(
     @PrimaryKey(autoGenerate = false) val id: Int,
     val name: String,
-    val parentCategory: String?
+    val parentCategoryId: Int?
 )

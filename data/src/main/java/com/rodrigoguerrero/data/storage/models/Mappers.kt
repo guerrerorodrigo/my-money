@@ -17,7 +17,7 @@ internal fun RecurringExpenseWithCategory.toModel() = RecurringExpense(
 internal fun CategoryEntity.toModel() = Category(
     id = id,
     name = name,
-    parentCategory = parentCategory
+    parentCategoryId = parentCategoryId
 )
 
 internal fun RecurringExpense.toEntity() = RecurringExpenseEntity(
@@ -32,5 +32,5 @@ internal fun RecurringExpense.toEntity() = RecurringExpenseEntity(
 internal fun Category.toEntity() = CategoryEntity(
     id = id,
     name = name,
-    parentCategory = parentCategory
+    parentCategoryId = parentCategoryId
 )

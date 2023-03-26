@@ -9,7 +9,7 @@ import java.util.UUID
 @Entity(tableName = "recurring_expense")
 internal data class RecurringExpenseEntity(
     @PrimaryKey val id: UUID,
-    val amount: Long,
+    val amount: String,
     val dayOfMonth: Int,
     val categoryId: Int,
     val description: String,

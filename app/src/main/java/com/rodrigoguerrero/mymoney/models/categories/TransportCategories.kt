@@ -14,24 +14,28 @@ val transportCategories = listOf(
         id = 50,
         icon = Icons.Outlined.DirectionsCar,
         iconBackground = Color(0xFF4CAF50),
-        name = R.string.category_transport_car
+        name = R.string.category_transport_car,
+        parentCategoryId = 10
     ),
     Category(
         id = 51,
         icon = Icons.Outlined.DirectionsBus,
         iconBackground = Color(0xFF4CAF50),
-        name = R.string.category_transport_public
+        name = R.string.category_transport_public,
+        parentCategoryId = 10
     ),
     Category(
         id = 52,
         icon = Icons.Outlined.Flight,
         iconBackground = Color(0xFF4CAF50),
-        name = R.string.category_transport_flights
+        name = R.string.category_transport_flights,
+        parentCategoryId = 10
     ),
     Category(
         id = 53,
         icon = Icons.Outlined.Circle,
         iconBackground = Color(0xFF4CAF50),
-        name = R.string.category_transport_other
+        name = R.string.category_transport_other,
+        parentCategoryId = 10
     ),
 )

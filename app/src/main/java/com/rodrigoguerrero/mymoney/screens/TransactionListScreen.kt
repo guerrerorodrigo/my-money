@@ -20,24 +20,29 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.MusicNote
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.rodrigoguerrero.mymoney.R
 import com.rodrigoguerrero.mymoney.components.TransactionItem
 import com.rodrigoguerrero.mymoney.models.Transaction
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
+import com.rodrigoguerrero.mymoney.viewmodels.RecurringExpensesViewModel
 
 @Composable
 fun TransactionListScreen(
     modifier: Modifier = Modifier,
-    transactions: List<Transaction>,
-    total: String,
+    viewModel: RecurringExpensesViewModel = hiltViewModel(),
     onAddTransaction: () -> Unit
 ) {
+    val state by viewModel.state.collectAsState()
+
     Scaffold(
         modifier = modifier.fillMaxSize(),
         floatingActionButton = {
@@ -61,7 +66,7 @@ fun TransactionListScreen(
                     modifier = Modifier.padding(bottom = MyMoneyTheme.padding.l)
                 ) {
                     Text(
-                        text = total,
+                        text = state.totalPerMonth,
                         style = MyMoneyTheme.typography.headlineMedium,
                         modifier = Modifier.fillMaxWidth(),
                         textAlign = TextAlign.Center,
@@ -78,7 +83,7 @@ fun TransactionListScreen(
                 }
 
             }
-            items(transactions) { transaction ->
+            items(state.recurringExpenses) { transaction ->
                 TransactionItem(transaction = transaction)
             }
         }
@@ -99,13 +104,13 @@ private fun PreviewTransactionListScreen() {
         for (i in 0..50) {
             val transaction = Transaction(
                 name = "Spotify $i",
-                category = "Streaming Services",
+                category = R.string.category_entertainment,
                 amount = "€14.99",
                 icon = Icons.Filled.MusicNote,
                 iconBackground = Color.Cyan
             )
             list.add(transaction)
         }
-        TransactionListScreen(transactions = list, total = "€1,234.99", onAddTransaction = { })
+        TransactionListScreen(onAddTransaction = { })
     }
 }

@@ -46,6 +46,8 @@ dependencies {
     kapt(Android.Hilt.compiler)
 
     testImplementation(Dependencies.Testing.jUnit)
+    testImplementation(Dependencies.Testing.mockk)
+    testImplementation(Dependencies.Testing.strikt)
 
     androidTestImplementation(Dependencies.Testing.androidJUnit)
     androidTestImplementation(Dependencies.Testing.espresso)

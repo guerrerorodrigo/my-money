@@ -2,18 +2,15 @@ package com.rodrigoguerrero.mymoney.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rodrigoguerrero.domain.currency.Money
 import com.rodrigoguerrero.domain.repository.RecurringExpensesRepository
 import com.rodrigoguerrero.mymoney.models.RecurringExpensesUiState
 import com.rodrigoguerrero.mymoney.models.Transaction
 import com.rodrigoguerrero.mymoney.models.allCategories
 import com.rodrigoguerrero.mymoney.models.categories.otherCategories
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.*
 import javax.inject.Inject
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
@@ -36,15 +33,34 @@ class RecurringExpensesViewModel @Inject constructor(
 
                         Transaction(
                             name = expense.description,
-                            category = category!!.name.toString(),
-                            amount = expense.amount.toString(), // TODO: fix this
+                            category = category!!.name,
+                            amount = Money(value = expense.amount, currencyCode = "EUR").toString(),
                             icon = category.icon,
                             iconBackground = category.iconBackground
                         )
                     }
                 }
                 .collectLatest { result ->
-                    _state.update { it.copy(isLoading = false, recurringExpenses = result) }
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            recurringExpenses = result,
+                        )
+                    }
+                }
+        }
+
+        viewModelScope.launch {
+            repository
+                .recurringExpenses
+                .filterNot { it.isEmpty() }
+                .collectLatest { expenses ->
+                    val total = expenses.sumOf { it.amount }
+                    _state.update {
+                        it.copy(
+                            totalPerMonth = Money(value = total, currencyCode = "EUR").toString()
+                        )
+                    }
                 }
         }
     }

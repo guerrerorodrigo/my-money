@@ -6,6 +6,8 @@ object Dependencies {
         const val gradleAndroid = "7.4.2"
         const val gradleKotlinPlugin = "1.8.10"
         const val jUnit = "4.13.2"
+        const val mockk = "1.13.4"
+        const val strikt = "0.34.1"
         const val versionCheck = "0.46.0"
     }
 
@@ -26,6 +28,8 @@ object Dependencies {
         const val composeJUnit = "androidx.compose.ui:ui-test-junit4:${Android.Versions.composeUiTestJunit4}"
         const val espresso = "androidx.test.espresso:espresso-core:${Versions.espresso}"
         const val jUnit = "junit:junit:${Versions.jUnit}"
+        const val mockk = "io.mockk:mockk:${Versions.mockk}"
+        const val strikt = "io.strikt:strikt-core:${Versions.strikt}"
     }
 
     fun isNonStable(version: String): Boolean {

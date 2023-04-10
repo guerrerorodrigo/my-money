@@ -14,6 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import com.rodrigoguerrero.mymoney.R
@@ -54,7 +55,7 @@ fun TransactionItem(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = transaction.category,
+                    text = stringResource(id = transaction.category),
                     style = MyMoneyTheme.typography.labelSmall,
                     color = MyMoneyTheme.color.onSurface
                 )
@@ -76,7 +77,7 @@ private fun PreviewTransactionItem() {
     MyMoneyTheme {
         val transaction = Transaction(
             name = "Spotify",
-            category = "Streaming Services",
+            category = R.string.category_entertainment,
             amount = "€14.99",
             icon = Icons.Filled.MusicNote,
             iconBackground = Color.Cyan

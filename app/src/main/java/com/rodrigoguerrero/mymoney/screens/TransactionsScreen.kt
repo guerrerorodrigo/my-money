@@ -9,14 +9,17 @@ import androidx.compose.material.Tab
 import androidx.compose.material.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.rememberPagerState
 import com.rodrigoguerrero.mymoney.R
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
+import com.rodrigoguerrero.mymoney.viewmodels.RecurringExpensesViewModel
 import kotlinx.coroutines.launch
 
 private enum class TransactionsTabs(@StringRes val textRes: Int) {
@@ -65,8 +68,6 @@ fun TransactionsScreen(
                 when (index) {
                     TransactionsTabs.INCOME.ordinal -> {}
                     TransactionsTabs.RECURRING.ordinal -> TransactionListScreen(
-                        transactions = listOf(),
-                        total = "0",
                         onAddTransaction = onNavigateToAddTransaction
                     )
                     TransactionsTabs.SPENDINGS.ordinal -> {}

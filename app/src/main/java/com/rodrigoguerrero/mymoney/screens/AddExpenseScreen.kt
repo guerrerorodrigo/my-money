@@ -21,13 +21,7 @@ import androidx.compose.material.icons.outlined.CreditCard
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -73,8 +67,10 @@ fun AddExpenseScreen(
         hideBottomSheet(coroutineScope, bottomSheetState)
     }
 
-    if (state.exit) {
-        onBack()
+    LaunchedEffect(key1 = state.exit) {
+        if (state.exit) {
+            onBack()
+        }
     }
 
     ModalBottomSheetLayout(

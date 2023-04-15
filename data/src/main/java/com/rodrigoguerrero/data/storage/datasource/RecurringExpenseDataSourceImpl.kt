@@ -1,5 +1,7 @@
 package com.rodrigoguerrero.data.storage.datasource
 
+import androidx.room.withTransaction
+import com.rodrigoguerrero.data.storage.MyMoneyDatabase
 import com.rodrigoguerrero.data.storage.daos.RecurringExpenseDao
 import com.rodrigoguerrero.data.storage.models.RecurringExpense
 import com.rodrigoguerrero.data.storage.models.toEntity
@@ -10,7 +12,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 internal class RecurringExpenseDataSourceImpl @Inject constructor(
-    private val recurringExpenseDao: RecurringExpenseDao
+    private val recurringExpenseDao: RecurringExpenseDao,
+    private val database: MyMoneyDatabase
 ) : RecurringExpenseDataSource {
 
     override val recurringExpenses: Flow<List<RecurringExpense>> =
@@ -23,13 +26,17 @@ internal class RecurringExpenseDataSourceImpl @Inject constructor(
     }
 
     override suspend fun addRecurringExpense(expense: RecurringExpense) {
-        recurringExpenseDao.addRecurringExpense(expense.toEntity())
-        recurringExpenseDao.addCategory(expense.category.toEntity())
+        database.withTransaction {
+            recurringExpenseDao.addCategory(expense.category.toEntity())
+            recurringExpenseDao.addRecurringExpense(expense.toEntity())
+        }
     }
 
     override suspend fun updateExpense(expense: RecurringExpense) {
-        recurringExpenseDao.addCategory(expense.category.toEntity())
-        recurringExpenseDao.updateRecurringExpense(expense.toEntity())
+        database.withTransaction {
+            recurringExpenseDao.addCategory(expense.category.toEntity())
+            recurringExpenseDao.updateRecurringExpense(expense.toEntity())
+        }
     }
 
     override suspend fun removeExpense(id: String) {

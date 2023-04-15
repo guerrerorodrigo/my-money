@@ -34,7 +34,10 @@ class RecurringExpensesViewModel @Inject constructor(
                         Transaction(
                             name = expense.description,
                             category = category!!.name,
-                            amount = Money(value = expense.amount, currencyCode = "EUR").toString(),
+                            amount = Money(
+                                value = expense.amount?.toLong() ?: 0L,
+                                currencyCode = "EUR"
+                            ).toString(),
                             icon = category.icon,
                             iconBackground = category.iconBackground
                         )
@@ -55,7 +58,9 @@ class RecurringExpensesViewModel @Inject constructor(
                 .recurringExpenses
                 .filterNot { it.isEmpty() }
                 .collectLatest { expenses ->
-                    val total = expenses.sumOf { it.amount }
+                    val total = expenses
+                        .map { it.amount?.toLong() ?: 0L }
+                        .sumOf { it }
                     _state.update {
                         it.copy(
                             totalPerMonth = Money(value = total, currencyCode = "EUR").toString()

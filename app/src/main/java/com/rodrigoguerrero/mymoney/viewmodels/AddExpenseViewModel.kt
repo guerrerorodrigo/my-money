@@ -34,7 +34,7 @@ class AddExpenseViewModel @Inject constructor(
                 repository.addRecurringExpense(
                     RecurringExpense(
                         id = UUID.randomUUID().toString(),
-                        amount = formatAmount(amount ?: "0"),
+                        amount = amount,
                         category = selectedCategory?.toDomainModel(resources)
                             ?: allCategories.find { it.id == 11 }!!.toDomainModel(resources),
                         dayOfMonth = billingDay?.toInt() ?: 1,
@@ -45,12 +45,6 @@ class AddExpenseViewModel @Inject constructor(
                 _state.update { it.copy(exit = true) }
             }
         }
-    }
-
-    // TODO: move amount logic to domain layer
-    private fun formatAmount(value: String): Long {
-        val amount = value.replace(',', '.')
-        return (amount.toFloat() * 100).toLong()
     }
 
     fun onCategorySelected(categoryId: Int) {

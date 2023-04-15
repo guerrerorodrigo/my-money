@@ -5,7 +5,7 @@ import com.rodrigoguerrero.data.storage.models.RecurringExpense as RecurringExpe
 
 fun RecurringExpenseData.toDomainModel() = RecurringExpense(
     id = id,
-    amount = amount,
+    amount = amount.toString(),
     category = category.toDomainModel(),
     dayOfMonth = dayOfMonth,
     description = description,
@@ -24,7 +24,7 @@ fun Category.toDataModel() = CategoryData(
     parentCategoryId = parentCategoryId
 )
 
-fun RecurringExpense.toDataModel() = RecurringExpenseData(
+fun RecurringExpense.toDataModel(amount: Long) = RecurringExpenseData(
     id = id,
     amount = amount,
     category = category.toDataModel(),

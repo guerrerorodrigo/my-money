@@ -32,6 +32,12 @@ internal class RecurringExpensesRepositoryImpl @Inject constructor(
     .flowOn(Dispatchers.IO)
 
     override suspend fun addRecurringExpense(recurringExpense: RecurringExpense) {
-        dataSource.addRecurringExpense(recurringExpense.toDataModel())
+        val amount = formatAmount(recurringExpense.amount ?: "0")
+        dataSource.addRecurringExpense(recurringExpense.toDataModel(amount))
+    }
+
+    private fun formatAmount(value: String): Long {
+        val amount = value.replace(',', '.')
+        return (amount.toFloat() * 100).toLong()
     }
 }

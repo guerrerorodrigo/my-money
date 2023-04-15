@@ -55,10 +55,14 @@ fun TransactionListScreen(
         LazyColumn(
             modifier = Modifier
                 .background(MyMoneyTheme.color.background)
-                .fillMaxSize()
-                .padding(padding),
+                .fillMaxSize(),
             state = rememberLazyListState(),
-            contentPadding = PaddingValues(all = MyMoneyTheme.padding.m),
+            contentPadding = PaddingValues(
+                top = MyMoneyTheme.padding.m,
+                start = MyMoneyTheme.padding.m,
+                end = MyMoneyTheme.padding.m,
+                bottom = padding.calculateBottomPadding()
+            ),
             verticalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.s)
         ) {
             item {

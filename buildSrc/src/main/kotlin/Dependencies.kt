@@ -3,7 +3,7 @@ object Dependencies {
         const val androidJUnit = "1.1.5"
         const val dateTime = "0.4.0"
         const val espresso = "3.5.1"
-        const val gradleAndroid = "7.4.2"
+        const val gradleAndroid = "8.0.0"
         const val gradleKotlinPlugin = "1.8.10"
         const val jUnit = "4.13.2"
         const val mockk = "1.13.4"

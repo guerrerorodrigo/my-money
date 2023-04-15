@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.FabPosition
@@ -38,11 +39,10 @@ import com.rodrigoguerrero.mymoney.viewmodels.RecurringExpensesViewModel
 @Composable
 fun TransactionListScreen(
     modifier: Modifier = Modifier,
-    viewModel: RecurringExpensesViewModel = hiltViewModel(),
+    listHeader: LazyListScope.() -> Unit = { },
+    transactions: List<Transaction>,
     onAddTransaction: () -> Unit
 ) {
-    val state by viewModel.state.collectAsState()
-
     Scaffold(
         modifier = modifier.fillMaxSize(),
         floatingActionButton = {
@@ -65,29 +65,8 @@ fun TransactionListScreen(
             ),
             verticalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.s)
         ) {
-            item {
-                Column(
-                    modifier = Modifier.padding(bottom = MyMoneyTheme.padding.l)
-                ) {
-                    Text(
-                        text = state.totalPerMonth,
-                        style = MyMoneyTheme.typography.headlineMedium,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = MyMoneyTheme.color.onSurface,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Text(
-                        text = stringResource(id = R.string.spending_per_month),
-                        style = MyMoneyTheme.typography.labelLarge,
-                        modifier = Modifier.fillMaxWidth(),
-                        textAlign = TextAlign.Center,
-                        color = MyMoneyTheme.color.onSurface
-                    )
-                }
-
-            }
-            items(state.recurringExpenses) { transaction ->
+            listHeader()
+            items(transactions) { transaction ->
                 TransactionItem(transaction = transaction)
             }
         }
@@ -115,6 +94,6 @@ private fun PreviewTransactionListScreen() {
             )
             list.add(transaction)
         }
-        TransactionListScreen(onAddTransaction = { })
+        TransactionListScreen(onAddTransaction = { }, listHeader = { }, transactions = list)
     }
 }

@@ -67,7 +67,7 @@ fun TransactionsScreen(
             ) {
                 when (index) {
                     TransactionsTabs.INCOME.ordinal -> {}
-                    TransactionsTabs.RECURRING.ordinal -> TransactionListScreen(
+                    TransactionsTabs.RECURRING.ordinal -> RecurringTransactionsScreen(
                         onAddTransaction = onNavigateToAddTransaction
                     )
                     TransactionsTabs.SPENDINGS.ordinal -> {}

@@ -40,6 +40,7 @@ import com.rodrigoguerrero.mymoney.viewmodels.RecurringExpensesViewModel
 fun TransactionListScreen(
     modifier: Modifier = Modifier,
     listHeader: LazyListScope.() -> Unit = { },
+    emptyScreen: @Composable () -> Unit = { },
     transactions: List<Transaction>,
     onAddTransaction: () -> Unit
 ) {
@@ -50,24 +51,28 @@ fun TransactionListScreen(
                 Icon(imageVector = Icons.Default.Add, contentDescription = null)
             }
         },
-        floatingActionButtonPosition = FabPosition.End
+        floatingActionButtonPosition = FabPosition.End,
+        backgroundColor = MyMoneyTheme.color.background
     ) { padding ->
-        LazyColumn(
-            modifier = Modifier
-                .background(MyMoneyTheme.color.background)
-                .fillMaxSize(),
-            state = rememberLazyListState(),
-            contentPadding = PaddingValues(
-                top = MyMoneyTheme.padding.m,
-                start = MyMoneyTheme.padding.m,
-                end = MyMoneyTheme.padding.m,
-                bottom = padding.calculateBottomPadding()
-            ),
-            verticalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.s)
-        ) {
-            listHeader()
-            items(transactions) { transaction ->
-                TransactionItem(transaction = transaction)
+
+        if (transactions.isEmpty()) {
+            emptyScreen()
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                state = rememberLazyListState(),
+                contentPadding = PaddingValues(
+                    top = MyMoneyTheme.padding.m,
+                    start = MyMoneyTheme.padding.m,
+                    end = MyMoneyTheme.padding.m,
+                    bottom = padding.calculateBottomPadding()
+                ),
+                verticalArrangement = Arrangement.spacedBy(MyMoneyTheme.padding.s)
+            ) {
+                listHeader()
+                items(transactions) { transaction ->
+                    TransactionItem(transaction = transaction)
+                }
             }
         }
     }

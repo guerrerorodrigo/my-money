@@ -3,6 +3,7 @@
 
     <!-- Transaction List Screen -->
     <string name="spending_per_month">Per month</string>
+    <string name="empty_recurring_expense">Add your first recurring expense.</string>
     
     <!-- Categories -->
     <string name="category_savings">Savings</string>

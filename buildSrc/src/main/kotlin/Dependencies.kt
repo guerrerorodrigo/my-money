@@ -6,6 +6,7 @@ object Dependencies {
         const val gradleAndroid = "8.0.0"
         const val gradleKotlinPlugin = "1.8.10"
         const val jUnit = "4.13.2"
+        const val lottie = "5.2.0"
         const val mockk = "1.13.4"
         const val strikt = "0.34.1"
         const val versionCheck = "0.46.0"
@@ -21,6 +22,10 @@ object Dependencies {
 
     object Kotlin {
         const val datetime = "org.jetbrains.kotlinx:kotlinx-datetime:${Versions.dateTime}"
+    }
+
+    object Lottie {
+        const val lottie = "com.airbnb.android:lottie-compose:${Versions.lottie}"
     }
 
     object Testing {

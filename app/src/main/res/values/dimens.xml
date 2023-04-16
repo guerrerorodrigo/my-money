@@ -6,4 +6,5 @@
     <dimen name="subcategory_padding">60dp</dimen>
     <dimen name="expense_icon_size">48dp</dimen>
     <dimen name="editable_text_vertical_padding">10dp</dimen>
+    <dimen name="animation_height">200dp</dimen>
 </resources>

@@ -79,6 +79,8 @@ dependencies {
 
     implementation(Dependencies.Kotlin.datetime)
 
+    implementation(Dependencies.Lottie.lottie)
+
     testImplementation(Dependencies.Testing.jUnit)
 
     androidTestImplementation(Dependencies.Testing.androidJUnit)

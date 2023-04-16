@@ -13,6 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.rodrigoguerrero.mymoney.R
+import com.rodrigoguerrero.mymoney.components.EmptyTransactionList
 import com.rodrigoguerrero.mymoney.theme.MyMoneyTheme
 import com.rodrigoguerrero.mymoney.viewmodels.RecurringExpensesViewModel
 
@@ -30,6 +31,9 @@ fun RecurringTransactionsScreen(
         onAddTransaction = onAddTransaction,
         listHeader = {
             item { MonthTotal(totalPerMonth = state.totalPerMonth) }
+        },
+        emptyScreen = {
+            EmptyTransactionList(description = stringResource(id = R.string.empty_recurring_expense))
         }
     )
 }
